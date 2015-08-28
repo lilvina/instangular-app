@@ -1,0 +1,31 @@
+<h1>Instangular!<small> Search Instagram's #tags</small></h1>
+<hr>
+<a class="pull-right" href="/favorites">View Favorites</a>
+<form ng-submit="searchTag()" class="form-inline">
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="tag" placeholder="type any tag name">
+	</div>
+	<input type="submit" value="Search" class="btn btn-primary">
+</form>
+<br>
+<br>
+<br>
+<div class="row" ng-show="photos.length > 0">
+	<div class="col-md-3" ng-repeat="photo in photos">
+		<div class="thumbnail">
+			<img ng-src="{{ photo.images.standard_resolution.url }}">
+			<br>
+			<p>
+			@{{ photo.user.username }}
+			<span class="glyphicon glyphicon-heart pull-right">
+				<ng-pluralize count="{{ photo.likes.count }}"
+				when="{'one': '1 like','other': '{} likes'}">
+				</ng-pluralize>
+			</span>
+			</p>
+			<p>
+				<a href="javascript:void(0)" ng-click="savePhoto(photo)">Save</a>
+			</p>
+		</div>
+	</div>
+</div>
